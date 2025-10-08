@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>李圓圓 × 半年紀念 💗</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
+      background: linear-gradient(180deg, #fff5f8, #ffe3ee);
+      color: #a61e4d;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 2.4em;
+      color: #d63384;
+      margin-top: 60px;
+    }
+    .days {
+      font-size: 2em;
+      margin: 20px;
+    }
+    button {
+      background: #ff6fa9;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 8px 16px #ff6fa94a;
+    }
+    .message {
+      margin: 30px;
+      font-size: 1.2em;
+    }
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      font-size: 20px;
+      color: #ff6fa9;
+      animation: floatUp 5s linear infinite;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-100vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>💗 李圓圓 × 半年紀念 💗</h1>
+  <div class="days" id="days"></div>
+  <button id="btn">點我抽一句甜甜話 🍓</button>
+  <div class="message" id="msg"></div>
+
+  <script>
+    // 💞 1. 設定你們在一起的日期
+    const startDate = new Date(2025, 3, 20); // ← 修改這裡！（月份-1，例如4月要填3）
+    const now = new Date();
+    const diff = Math.floor((now - startDate) / (1000 * 60 * 60 * 24)) + 1;
+    document.getElementById("days").textContent = `我們在一起的第 ${diff} 天 💕`;
+
+    // 💬 2. 甜蜜話語清單
+    const msgs = [
+      "早安安～想你想到睡不著 🥺",
+      "每一天都更喜歡你一點點 💗",
+      "如果愛有溫度，你就是我最暖的一段 ☀️",
+      "半年啦～但我還是超級心動 💘",
+      "想讓你知道，你是我每天最期待的人 💕"
+    ];
+    const btn = document.getElementById("btn");
+    const msg = document.getElementById("msg");
+    btn.onclick = () => {
+      const text = msgs[Math.floor(Math.random() * msgs.length)];
+      msg.textContent = text;
+      spawnHearts(10);
+    };
+
+    // 💖 3. 飄動愛心動畫
+    function spawnHearts(n) {
+      for (let i = 0; i < n; i++) {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.textContent = Math.random() < 0.5 ? "💖" : "💞";
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.animationDuration = 3 + Math.random() * 3 + "s";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 5000);
+      }
+    }
+  </script>
+</body>
+</html>
